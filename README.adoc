@@ -1,0 +1,59 @@
+= CMake variables
+In CMake it is possible to create variables in several way for different use-case
+
+:toc:
+:sectnums:
+
+== Introduction
+So we know how we can create and set a variable using the `set` command like so:
+
+```cmake
+set(CMAKE_CXX_STANDARD 17)
+```
+
+NOTE: The `set` command above will set the C++ standard with 17 norm.
+
+Yet, there is a tons of vriables that are set by CMake, and that you can use or modify its value if needed.
+
+NOTE: But yet a question arise, how do you know if a variable is already predefined or not ?
+
+== CMake variables
+Most of the time, all variables that are created and used by `CMake` starts with a `CMAKE_` prefix.
+
+IMPORTANT: However, to check if the variable you are using is part of CMake or not, you could just check with you IDE, if the hovering of the variable show you a documentation hint, that means the variable is a variable that is coming from CMake.
+
+=== Important CMake variables for PATH
+
+==== `CMAKE_SOURCE_DIR`
+
+This is the topmost folder (source directory) that contains a `CMakeLists.txt` file.
+
+NOTE: This variable is storing the absolute path of where is your `CMakeLists.txt` file (top level one)
+
+==== `PROJECT_SOURCE_DIR`
+
+This variable doesn't start with `CMAKE_` as prefix, however it contains the full path to the root of your project source directory.
+
+NOTE: This variable is storing the absolute path of the root of your project. That is the `CMakeLists` file where the `project` command is located.
+
+IMPORTANT: You can then see that it's often times where you have both variables `CMAKE_SOURCE_DIR` and `PROJECT_SOURCE_DIR` pointing to the same location, as your project is defined on the topmost `CMakeLists.txt`
+
+==== `CMAKE_CURRENT_SOURCE_DIR`
+
+The directory where the currently processed `CMakeLists.txt` is located in.
+
+IMPORTANT: This variable contains the value of your path where your currently processed `CMakeLists.txt` file.
+
+==== `CMAKE_CURRENT_LIST_DIR`
+
+The directory of the listfile currently being processed (for example, a *.cmake module)
+
+IMPORTANT: This variable isn't used for the source files such as .hpp and .cpp, but all the cmake files with the `.cmake` extension.
+
+==== `CMAKE_MODULE_PATH`
+
+Tell CMake to search first in directories listed in `CMAKE_MODULE_PATH` when you use a `find_package()` or `include()` command.
+
+==== `CMAKE_BINARY_DIR`
+
+The filepath to the build directory.
